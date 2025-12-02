@@ -1,5 +1,5 @@
 
-with open('input.txt', 'r') as file:
+with open('Day 1/input.txt', 'r') as file:
     input = [line.strip() for line in file]
 
 def r_iterate(variable, number):
