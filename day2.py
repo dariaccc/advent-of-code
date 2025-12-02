@@ -15,28 +15,37 @@ for num_range in input:
 #print("upper bound: ", upper_bound)
 
 invalid_id = []
+invalid_id_sum = 0
 
 for i in range(len(input)):
     id = lower_bound[i]
     max = len(str(upper_bound[i]))
     rep = 0
+    ids = []
 
-    if id % 2:
+    if max % 2 == 0 or id % 2 == 0:
         rep = int(max/2)
     else:
+      #  print("skip")
         continue
 
-    print(rep)
+    #print(rep)
 
     half = ""
     for j in range(rep):
         half += (str(id)[j])
 
     inv = half + half
-    print("inv ", inv)
+    #print("inv ", inv)
     
-  #  if int(inv) in range(lower_bound[i], upper_bound[i]):
-   #         invalid_id.append(id)
-    id += 1
+    for id in range(lower_bound[i], upper_bound[i]):
+        if id == int(inv):
+            invalid_id.append(id)
+            invalid_id_sum += id
+        id += 1
 
-    #print(invalid_id)
+print(invalid_id)
+print(invalid_id_sum)
+
+#edge cases not dealth with - if the lower bound is even, that one needs to be accounted for invalid id, otherwise the upper bound
+#what happens for the lowest and highest numbers?
