@@ -1,5 +1,4 @@
 
-
 with open("Day 2/input.txt", "r") as file:
     for line in file:
         input = line.split(",")
