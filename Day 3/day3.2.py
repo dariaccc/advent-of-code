@@ -1,7 +1,3 @@
-# find the largest number
-# find the largest number to the RIGHT of that number
-# put together as string
-
 with open("Day 3/input.txt", "r") as file:
     bank = [line.strip() for line in file]
 
@@ -14,8 +10,6 @@ for i in bank:
     stop = len(i) - 12
 
     i = list(i)
-   # max_value = max(i)
-    #volt12.append(max_value)
 
     index = 0
     x = 1
@@ -23,10 +17,7 @@ for i in bank:
         
         j = i[index:stop + 1:1]
         print(j)
-       # print("stop: ", stop)
-
         max_value = max(j)
-        #print(j.index(max(j)))
         
         print(max_value)
         index = index + (j.index(max(j))) + 1 #does not work
