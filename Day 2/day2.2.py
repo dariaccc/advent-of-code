@@ -1,6 +1,6 @@
 
 
-with open("Day 2/input2.txt", "r") as file:
+with open("Day 2/input.txt", "r") as file:
     for line in file:
         input = line.split(",")
 
@@ -44,14 +44,19 @@ for i in range(len(input)):
                         cur += str(id)[k]
                 if (cur != "") and (cur not in vars1):        
                     vars1.append(cur)
-            if(len(vars1) != 0) and (len(cur) == len(str(id))) and (vars1 not in vars2):
+            if(len(vars1) != 0) and (len(cur) == len(str(id))) and (vars1 not in vars2) and (lower_bound[i] <= int(vars1[0]) <= upper_bound[i]):
                 vars2.append(vars1)
-                #print(vars2)
 
         id += 1
 
 print(len(vars2))
 print(vars2)
+
+sum = 0
+for i in vars2:
+    sum += int(i[0])
+
+print(sum)
 
     # if(max % 2 == 0) or (len(str(id)) % 2 == 0):
     #     rep = int(max/2)
