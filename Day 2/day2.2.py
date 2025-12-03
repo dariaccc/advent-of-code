@@ -14,35 +14,66 @@ for num_range in input:
 invalid_id = []
 invalid_id_sum = 0
 
+max_length = 0
+for i in upper_bound:
+    if len(str(i)) > max_length:
+        max_length = len(str(i))
+
+#print(max_length)
+
+vars2 = []
 for i in range(len(input)):
     id = lower_bound[i]
     max = len(str(upper_bound[i]))
     rep = 0
     ids = []
 
-    if(max % 2 == 0) or (len(str(id)) % 2 == 0):
-        rep = int(max/2)
-    else:
-        continue
-
     for id in range(lower_bound[i], upper_bound[i] + 1):
+        for div in range(2, max_length):
+            cur = ""
 
-        j = 0
-        for _ in range(1, len(str(id))):
-            current = str(id)[j]
-            next = str(id)[j + 1]            
+            vars1 = []
+            if(id % div == 0):
+                y = int(len(str(id))/div)
+                
+                vars1 = []
+               # print(div, y)
 
-            print(current, next)
+                for j in range(div):
+                    for k in range(y):
+                        cur += str(id)[k]
+                if (cur != "") and (cur not in vars1):        
+                    vars1.append(cur)
+            if(len(vars1) != 0) and (len(cur) == len(str(id))) and (vars1 not in vars2):
+                vars2.append(vars1)
+                #print(vars2)
 
-            if current == next:
-                invalid_id.append(id)
-                invalid_id_sum += id
-            j += 1
+        id += 1
 
-    id += 1
+print(len(vars2))
+print(vars2)
 
-print(invalid_id)
-print(invalid_id_sum)
+    # if(max % 2 == 0) or (len(str(id)) % 2 == 0):
+    #     rep = int(max/2)
+    # else:
+    #     continue
+
+    # for id in range(lower_bound[i], upper_bound[i] + 1):
+
+    #     j = 0
+    #     for _ in range(1, len(str(id))):
+    #         current = str(id)[j]
+    #         next = str(id)[j + 1]            
+
+    #         #print(current, next)
+
+    #         if current == next:
+    #             invalid_id.append(id)
+    #             invalid_id_sum += id
+    #         j += 1
+
+#print(invalid_id)
+#print(invalid_id_sum)
 
 
 # for i in range(len(input)):
