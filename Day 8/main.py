@@ -86,9 +86,9 @@ for x in range(1000):
             all_circuits.append(temp)
 
     #print('all circuits: ', all_circuits)
-    all_distances[minimum_i_idx][minimum_j_idx[minimum_i_idx]] = 10000000000
+    all_distances[minimum_i_idx][minimum_j_idx[minimum_i_idx]] = 100000000
 
-#print('all circuits: ', all_circuits)
+print('all circuits: ', all_circuits)
 
 circuit_lengths = []
 for c in all_circuits:

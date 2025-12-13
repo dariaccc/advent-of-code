@@ -1,9 +1,9 @@
 
-with open("Day 6/input.txt", "r") as file:
+with open("Day 6/input2.txt", "r") as file:
     input = [line.strip() for line in file]
 
-# print(input)
-# print(len(input))
+print(input)
+print(len(input))
 
 length = len(input)
 
@@ -21,8 +21,8 @@ for idx_l, list in enumerate(input[0:length:1]):
     else:
         input_list.append(j)
 
-# print(input_list)
-# print(operators)
+print(input_list)
+print(operators)
 
 n = 0
 total = []
