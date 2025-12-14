@@ -1,4 +1,5 @@
 
+#ready
 with open("Day 7/input.txt", "r") as file:
     input = [line.strip() for line in file]
 
