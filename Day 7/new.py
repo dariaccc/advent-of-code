@@ -8,13 +8,19 @@ char_list = []
 len_list = int(len(input) / 2 - 1)
 r_list = []
 
-for _ in range(2):
+for _ in range(3):
     previous = input[0]
     new_input = [previous]
     old_char_list = char_list
     char_list = []
     rs = 0
+
+    for idx_r, c in enumerate(old_char_list):
+        if c == "R":
+            r_list.append(idx_r)
+
     for idx_i, i in enumerate(input[1::]):
+        
         i = list(i)
         for idx, char in enumerate(previous):
             if char == "S":
@@ -25,18 +31,23 @@ for _ in range(2):
                     i[idx - 1] = "|"
                     char_list.append("L")
                 else:
-                    idx_c = int(idx_i/2)
-                    for idx_r, c in enumerate(old_char_list):
-                        if c == "R":
-                            r_list.append(idx_r)
+                    idx_c = int(idx_i/2) - 1
 
                     if not r_list:
-                        if int(idx_i/2) == len(old_char_list):
+                        if idx_c == len(old_char_list) - 1:
                             char_list.append("R")
+                            i[idx + 1] = "|"
                         else:
                             char_list.append("L")
-                    
-                    #if idx_c
+                            i[idx - 1] = "|"
+                    elif all(rs == "R" for rs in old_char_list[idx_c::]):
+                        print(idx_c)
+                        print(all(rs == "R" for rs in old_char_list[idx_c::]))
+                        i[idx + 1] = "|"
+                        char_list.append("R")
+                    else:
+                        i[idx - 1] = "|"
+                        char_list.append("L")
 
 
             elif char == "|" and i[idx] != "^":
@@ -56,5 +67,5 @@ print(char_list)
 
 #DFS algorithm
 
-
-#print(paths)
+#next iteration (range3) - should be ['L', 'L', 'L', 'L', 'L', 'R', 'L']
+#problem now is - we are on the LAST element when we check the last element
