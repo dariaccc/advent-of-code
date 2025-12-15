@@ -1,17 +1,22 @@
 
 import random
+from tqdm import tqdm
 
 with open("Day 7/input2.txt", "r") as file:
     input = [line.strip() for line in file]
 
 previous = input[0]
 new_input = [previous]
+print(input)
+
 counter = 0
 paths = 0
 total_paths = []
 
 #while new_input not in total_paths:
-for i in range(3):
+for i in tqdm(range(3000)):
+    previous = input[0]
+    new_input = [previous]
     for i in input[1::]:
         i = list(i)
         for idx, char in enumerate(previous):
@@ -31,14 +36,11 @@ for i in range(3):
         previous = i
     if new_input not in total_paths:
         total_paths.append(new_input)
-    paths += 1
+        paths += 1
 
 
-for t_path in total_paths:
-    for t in t_path:
-        print(t)
+# for t_path in total_paths:
+#     for t in t_path:
+#         print(t)
 
-
-print(paths)
-
-#S - disappears
+# print("number of paths:", paths)
