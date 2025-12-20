@@ -1,6 +1,6 @@
 
 #ready
-with open("Day 7/input.txt", "r") as file:
+with open("Day 7/input2.txt", "r") as file:
     input = [line.strip() for line in file]
 
 previous = input[0]

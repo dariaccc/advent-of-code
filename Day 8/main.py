@@ -1,6 +1,6 @@
 import math
 
-with open("Day 8/input.txt", "r") as file:
+with open("Day 8/input2.txt", "r") as file:
     input = [line.strip() for line in file]
 
 #print(input)
@@ -30,7 +30,7 @@ for idx_i, i in enumerate(input[:len(input)-1:]):
 circuit = 0
 all_circuits = [[]]
 
-for x in range(1000):
+for x in range(10):
     minimums = []
     temp = []
     minimum_i_idx, minimum_j_idx = [], []
