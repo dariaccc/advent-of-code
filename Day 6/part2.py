@@ -26,8 +26,6 @@ zipped_list = zip(*input)
 start = 0
 stop = 2
 
-#for _ in range(equations):
-    #for _ in range(start, stop):
 for z in zipped_list:
         its = ""
         print(z)

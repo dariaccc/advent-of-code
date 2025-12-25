@@ -1,15 +1,13 @@
 import math
 
-with open("Day 8/input2.txt", "r") as file:
+with open("Day 8/input.txt", "r") as file:
     input = [line.strip() for line in file]
 
-#print(input)
-all_distances= []
 start = 0
+distances = dict()
+print(len(input))
 
 for idx_i, i in enumerate(input[:len(input)-1:]):
-    min_dist = 10000
-    distances = []
     elements = []
     for element in i.split(","):
         elements.append(int(element))
@@ -21,74 +19,58 @@ for idx_i, i in enumerate(input[:len(input)-1:]):
                 elements_j.append(int(element_j))
 
             dist = math.sqrt((elements[0] - elements_j[0])**2 + (elements[1] - elements_j[1])**2 + (elements[2] - elements_j[2])**2)
+            current_boxes = [i, j]
+            distances[dist] = (current_boxes)
 
-            distances.append(dist)
     start += 1
-    all_distances.append(distances)
 
-#print(all_distances)
-circuit = 0
-all_circuits = [[]]
+#print(distances)
+print(len(distances))
 
-for x in range(10):
-    minimums = []
-    temp = []
-    minimum_i_idx, minimum_j_idx = [], []
-    for idx_d,d in enumerate(all_distances):
-        min_d_idx = d.index(min(d))
-        minimums.append(min(d))
-        minimum_j_idx.append(min_d_idx)
+#circuit = 0
+all_circuits = []
 
-    minimum_i_idx = minimums.index(min(minimums))
- 
-    add_on = minimum_i_idx + 1
-    #print(input[minimum_i_idx], input[minimum_j_idx[minimum_i_idx] + add_on])
+for _ in range(1000):
+    min_dist = min(distances)
+    boxes = distances[min_dist]
+    print(min_dist)
+    print(boxes)
+    distances.pop(min_dist)
 
-    broken_loop = False
-    in_c = False
-    if x == 0:
-        all_circuits[0].append(input[minimum_i_idx])
-        all_circuits[0].append(input[minimum_j_idx[minimum_i_idx] + add_on])
+    all_circuits.append(boxes)
+
+print(all_circuits)
+print(len(all_circuits))
+
+start = 1
+stop_loop = 0
+while stop_loop < len(all_circuits) - 1:
+    broken = False
+    circuit = all_circuits[stop_loop]
+    print("circ is: ", circuit)
+
+    for sec_circuit in all_circuits[start::]:
+        if bool(set(circuit) & set(sec_circuit)) and circuit != sec_circuit:
+            all_circuits[stop_loop] = all_circuits[stop_loop] + sec_circuit
+            all_circuits.remove(sec_circuit)
+            broken = True
+            break
+    
+    if broken:
+        pass
     else:
-        for idx_c, circuit in enumerate(all_circuits):
+        stop_loop += 1
+        start += 1 
 
-            if (str(input[minimum_i_idx]) in circuit) and (str(input[minimum_j_idx[minimum_i_idx] + add_on]) in circuit):
- 
-                in_c = True
-                break
-            elif str(input[minimum_i_idx]) in circuit:
-                for circuit2 in all_circuits:
-                    if str(input[minimum_j_idx[minimum_i_idx] + add_on]) in circuit2 and circuit != circuit2:
-                        #print("HERE: ", circuit, circuit2)
-                        all_circuits.pop(idx_c)
 
-                        to_pop = all_circuits.index(circuit2)
-                        all_circuits.pop(to_pop)
-                        #print(all_circuits)
-                        all_circuits.append(circuit + circuit2)
-                        broken_loop = True
-                        break
+circ_counter = 0
+for idx, thing in enumerate(all_circuits):
+    all_circuits[idx] = set(thing)
 
-                if not broken_loop:
-                    all_circuits[idx_c].append(input[minimum_j_idx[minimum_i_idx] + add_on])
-                in_c = True
-                break
-            elif str(input[minimum_j_idx[minimum_i_idx] + add_on]) in circuit:
-                #  print("one in 1")
-                all_circuits[idx_c].append(input[minimum_i_idx])
-                in_c = True
-                break
 
-        if not in_c:
-            temp.append(input[minimum_i_idx])
-            temp.append(input[minimum_j_idx[minimum_i_idx] + add_on])
+print("\n", all_circuits)
+print(circ_counter)
 
-            all_circuits.append(temp)
-
-    #print('all circuits: ', all_circuits)
-    all_distances[minimum_i_idx][minimum_j_idx[minimum_i_idx]] = 100000000
-
-print('all circuits: ', all_circuits)
 
 circuit_lengths = []
 for c in all_circuits:
@@ -99,7 +81,6 @@ prev_value = 1
 
 for _ in range(3):
     value = max(circuit_lengths)
-    print(max(circuit_lengths))
     circuit_lengths.pop(circuit_lengths.index(max(circuit_lengths)))
     value *= prev_value
     prev_value =- value
