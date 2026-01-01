@@ -1,7 +1,3 @@
-# find the largest number
-# find the largest number to the RIGHT of that number
-# put together as string
-
 with open("Day 3/input.txt", "r") as file:
     bank = [line.strip() for line in file]
 
@@ -9,7 +5,6 @@ print(bank)
 joltage = 0
 
 for i in bank:
-    #print(i)
     max_left = 0
     max_right = 0
     index = 0

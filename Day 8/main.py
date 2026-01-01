@@ -24,10 +24,8 @@ for idx_i, i in enumerate(input[:len(input)-1:]):
 
     start += 1
 
-#print(distances)
 print(len(distances))
 
-#circuit = 0
 all_circuits = []
 
 for _ in range(1000):

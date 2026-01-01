@@ -1,5 +1,3 @@
-#ready
-
 with open("Day 7/input.txt", "r") as file:
     tree = [line.strip() for line in file]
 

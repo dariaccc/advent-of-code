@@ -1,3 +1,4 @@
+#note here
 rolls = []
 with open("Day 4/input.txt", "r") as file:
     for line in file: rolls.append(line.strip())
@@ -17,10 +18,8 @@ while boo:
         new_row = []
 
         for idx_roll,roll in enumerate(row): #for each roll in the row
-
             x = 0
             if roll == "@":
-
                 if idx_roll - 1 < 0:
                     pass
                 else:
@@ -67,8 +66,4 @@ while boo:
         rolls = new_list
 
 print(forklift)
-
-with open("Day 4/output.txt", "w") as file:
-    for row in rolls:
-        file.write(row)
  

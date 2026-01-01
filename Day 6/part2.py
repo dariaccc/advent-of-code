@@ -1,5 +1,4 @@
 
-#ready
 with open("Day 6/input.txt", "r") as file:
     input = [line for line in file]
 

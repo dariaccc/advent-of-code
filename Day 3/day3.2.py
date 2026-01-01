@@ -20,7 +20,7 @@ for i in bank:
         max_value = max(j)
         
         print(max_value)
-        index = index + (j.index(max(j))) + 1 #does not work
+        index = index + (j.index(max(j))) + 1
         print("index: ", index)
 
         stop = len(i) - n

@@ -7,7 +7,7 @@ upper_ranges = []
 ids = []
 
 breakpoint = input.index("")
-print(breakpoint) #correct
+print(breakpoint)
 
 for idx,i in enumerate(input):
     if idx > breakpoint:
@@ -17,7 +17,6 @@ for idx,i in enumerate(input):
         lower_ranges.append(int(i))
         upper_ranges.append(int(j))
 
-#print(lower_ranges, upper_ranges)
 print(ids)
 
 fresh = 0
@@ -29,7 +28,3 @@ for id in ids:
             break
 
 print(fresh)
-#split the input into 2, the first with the ID ranges, then separated by a space, the IDS
-
-#loop through id's and check if they are in any of the ranges
-#how to loop through ranges?
